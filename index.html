@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto João 10 — Jesus o Bom Pastor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────────────────────── */
+:root {
+  --bg:          #FAF7F2;
+  --bg-alt:      #F2EDE3;
+  --bg-dark:     #1A1510;
+  --primary:     #C8781A;
+  --primary-dk:  #9D5C10;
+  --primary-lt:  #F0A84A;
+  --cream:       #F2C98A;
+  --cream-lt:    #FBF0DC;
+
+  --red:    #E8272A;
+  --blue:   #1E4FD8;
+  --green:  #28BC28;
+  --yellow: #F5C400;
+  --orange: #FF6800;
+
+  --text:     #1E1A14;
+  --text-mid: #5A4F3E;
+  --text-lt:  #8A7B68;
+  --white:    #FFFFFF;
+
+  --font-display: 'Lora', serif;
+  --font-body:    'Nunito', sans-serif;
+
+  --radius:    12px;
+  --radius-lg: 24px;
+  --shadow:    0 4px 24px rgba(30,26,20,.10);
+  --shadow-lg: 0 12px 48px rgba(30,26,20,.16);
+}
+
+/* ─── RESET ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ─── UTILITIES ──────────────────────────────────────────────────────────── */
+.container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.section    { padding: 96px 0; }
+.section-sm { padding: 64px 0; }
+.tag {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--primary);
+  background: var(--cream-lt);
+  border: 1.5px solid var(--primary-lt);
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.22;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  max-width: 520px;
+  line-height: 1.7;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: .95rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all .22s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--primary-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,120,26,.35); }
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,.5);
+}
+.btn-outline:hover { background: rgba(255,255,255,.12); border-color: var(--white); }
+.btn-outline-dk {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+.btn-outline-dk:hover { background: var(--primary); color: var(--white); }
+
+/* ─── AVISO BANNER ───────────────────────────────────────────────────────── */
+.aviso-bar {
+  background: var(--red);
+  color: var(--white);
+  text-align: center;
+  padding: 10px 24px;
+  font-size: .88rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  position: relative;
+  z-index: 999;
+}
+.aviso-bar span { opacity: .85; font-weight: 500; }
+.aviso-bar a { text-decoration: underline; margin-left: 8px; }
+
+/* ─── NAVBAR ─────────────────────────────────────────────────────────────── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: rgba(250,247,242,.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200,120,26,.12);
+  padding: 0 24px;
+}
+.nav-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  gap: 32px;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.nav-logo-circle {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--bg-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--cream);
+  font-family: var(--font-display);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.nav-logo-circle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--red) 0deg 72deg,
+    var(--blue) 72deg 144deg,
+    var(--green) 144deg 216deg,
+    var(--yellow) 216deg 288deg,
+    var(--orange) 288deg 360deg
+  );
+  opacity: .25;
+}
+.logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1rem; line-height: 1.15; }
+.logo-text small { font-family: var(--font-body); font-size: .7rem; font-weight: 500; color: var(--text-lt); display: block; }
+.nav-links { display: flex; gap: 4px; align-items: center; }
+.nav-links a {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  transition: all .18s;
+}
+.nav-links a:hover { color: var(--primary); background: var(--cream-lt); }
+.nav-cta { flex-shrink: 0; }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+}
+.hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .2s; }
+
+/* ─── HERO ───────────────────────────────────────────────────────────────── */
+.hero {
+  background: var(--bg-dark);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 24px;
+}
+/* Decorative circles */
+.hero-deco-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.ring-1 {
+  width: 700px; height: 700px;
+  right: -200px; top: 50%;
+  transform: translateY(-50%);
+  border: 60px solid transparent;
+  background: conic-gradient(
+    var(--red) 0deg 72deg,
+    var(--blue) 72deg 144deg,
+    var(--green) 144deg 216deg,
+    var(--yellow) 216deg 288deg,
+    var(--orange) 288deg 360deg
+  ) border-box;
+  opacity: .18;
+  animation: spin-slow 60s linear infinite;
+}
+.ring-2 {
+  width: 480px; height: 480px;
+  right: -80px; top: 50%;
+  transform: translateY(-50%);
+  border: 2px solid rgba(242,201,138,.15);
+}
+.ring-3 {
+  width: 280px; height: 280px;
+  right: 110px; top: 50%;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, rgba(242,201,138,.12) 0%, transparent 70%);
+}
+.ring-4 {
+  width: 900px; height: 900px;
+  left: -400px; bottom: -300px;
+  border: 1px solid rgba(255,255,255,.04);
+}
+@keyframes spin-slow { to { transform: translateY(-50%) rotate(360deg); } }
+
+/* Color dots */
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  opacity: .55;
+  pointer-events: none;
+}
+.dot-1 { width:14px; height:14px; background:var(--red);    top: 22%; left: 8%; animation: float1 6s ease-in-out infinite; }
+.dot-2 { width:10px; height:10px; background:var(--blue);   top: 65%; left: 14%; animation: float2 8s ease-in-out infinite; }
+.dot-3 { width:18px; height:18px; background:var(--yellow); top: 75%; left: 5%;  animation: float1 7s ease-in-out infinite .5s; }
+.dot-4 { width:12px; height:12px; background:var(--green);  top: 35%; left: 42%; animation: float2 9s ease-in-out infinite 1s; }
+.dot-5 { width:8px;  height:8px;  background:var(--orange); top: 15%; left: 55%; animation: float1 5s ease-in-out infinite .3s; }
+@keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(10px)} }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1160px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 24px;
+  opacity: .85;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 2px;
+  background: var(--primary-lt);
+  border-radius: 2px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  max-width: 680px;
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--cream);
+}
+.hero-sub {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,.65);
+  max-width: 500px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ─── VERSE STRIP ────────────────────────────────────────────────────────── */
+.verse-strip {
+  background: var(--primary);
+  color: var(--white);
+  text-align: center;
+  padding: 24px;
+}
+.verse-strip blockquote {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-style: italic;
+  opacity: .95;
+  max-width: 700px;
+  margin: 0 auto 6px;
+}
+.verse-strip cite {
+  font-size: .82rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: .08em;
+  opacity: .7;
+}
+
+/* ─── SOBRE ──────────────────────────────────────────────────────────────── */
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.sobre-visual {
+  position: relative;
+}
+.sobre-img-frame {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #2A2010 0%, #1A1510 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.sobre-img-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from 0deg at 30% 70%,
+    rgba(232,39,42,.35) 0deg,
+    rgba(30,79,216,.2) 90deg,
+    rgba(40,188,40,.2) 180deg,
+    rgba(245,196,0,.2) 270deg,
+    rgba(255,104,0,.2) 360deg
+  );
+}
+.sobre-img-placeholder {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: rgba(255,255,255,.4);
+  font-size: .85rem;
+}
+.sobre-img-placeholder svg { margin: 0 auto 8px; opacity: .3; }
+.sobre-badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.sobre-badge strong { display: block; font-size: 1.8rem; font-weight: 800; color: var(--primary); font-family: var(--font-display); }
+.sobre-badge span { font-size: .78rem; color: var(--text-lt); font-weight: 600; }
+.sobre-valores { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.valor-chip {
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: .82rem;
+  font-weight: 700;
+  border: 1.5px solid;
+}
+.chip-red    { color: var(--red);    border-color: rgba(232,39,42,.3);    background: rgba(232,39,42,.06); }
+.chip-blue   { color: var(--blue);   border-color: rgba(30,79,216,.3);    background: rgba(30,79,216,.06); }
+.chip-green  { color: #1a8a1a;       border-color: rgba(40,188,40,.3);    background: rgba(40,188,40,.06); }
+.chip-yellow { color: #a08000;       border-color: rgba(245,196,0,.3);    background: rgba(245,196,0,.08); }
+.chip-orange { color: var(--orange); border-color: rgba(255,104,0,.3);    background: rgba(255,104,0,.06); }
+
+/* ─── NÚMEROS ────────────────────────────────────────────────────────────── */
+.numeros-section { background: var(--bg-dark); }
+.numeros-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.numero-card {
+  padding: 48px 32px;
+  text-align: center;
+  position: relative;
+  background: rgba(255,255,255,.03);
+  transition: background .2s;
+}
+.numero-card:hover { background: rgba(255,255,255,.06); }
+.numero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+}
+.nc-1::before { background: var(--red); }
+.nc-2::before { background: var(--blue); }
+.nc-3::before { background: var(--green); }
+.nc-4::before { background: var(--yellow); }
+.numero-val {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.numero-label { font-size: .9rem; color: rgba(255,255,255,.5); font-weight: 600; }
+
+/* ─── EVENTOS ────────────────────────────────────────────────────────────── */
+.eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+.evento-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  transition: all .25s;
+}
+.evento-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.evento-foto {
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.ec-1 .evento-foto { background: linear-gradient(135deg, #c0332b 0%, #8a1e18 100%); }
+.ec-2 .evento-foto { background: linear-gradient(135deg, #1840b8 0%, #0f2670 100%); }
+.ec-3 .evento-foto { background: linear-gradient(135deg, #1a8a1a 0%, #0d5a0d 100%); }
+.evento-foto-icon {
+  font-size: 3rem;
+  opacity: .35;
+}
+.evento-tipo {
+  position: absolute;
+  top: 14px; left: 14px;
+  background: rgba(0,0,0,.5);
+  color: var(--white);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  backdrop-filter: blur(4px);
+}
+.evento-body { padding: 20px 22px 24px; }
+.evento-data { font-size: .78rem; color: var(--primary); font-weight: 700; margin-bottom: 8px; }
+.evento-titulo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--text); line-height: 1.35; }
+.evento-local { font-size: .82rem; color: var(--text-lt); display: flex; align-items: center; gap: 5px; }
+.eventos-footer { text-align: center; margin-top: 40px; }
+
+/* ─── DEPOIMENTOS ────────────────────────────────────────────────────────── */
+.dep-section { background: var(--bg-alt); }
+.dep-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.dep-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  position: relative;
+  border-left: 4px solid;
+}
+.dep-card.d1 { border-color: var(--red); }
+.dep-card.d2 { border-color: var(--blue); }
+.dep-card.d3 { border-color: var(--green); }
+.dep-quote {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+.dep-texto {
+  font-size: .95rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.dep-autor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.dep-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.av1 { background: var(--red); }
+.av2 { background: var(--blue); }
+.av3 { background: var(--green); }
+.dep-nome { font-weight: 700; font-size: .9rem; color: var(--text); }
+.dep-role { font-size: .75rem; color: var(--text-lt); }
+
+/* ─── VOLUNTÁRIO CTA ─────────────────────────────────────────────────────── */
+.vol-section { background: var(--bg); }
+.vol-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.habilidades-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 36px;
+}
+.habilidade-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: .83rem;
+  font-weight: 700;
+  background: var(--white);
+  border: 1.5px solid var(--bg-alt);
+  color: var(--text-mid);
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  transition: all .18s;
+  cursor: default;
+}
+.habilidade-tag:hover { border-color: var(--primary-lt); color: var(--primary); transform: translateY(-2px); }
+.habilidade-tag .dot-sm {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.vol-visual {
+  background: linear-gradient(135deg, var(--bg-dark) 0%, #2A1F0E 100%);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.vol-visual::before {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  border: 1px solid rgba(242,201,138,.15);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+.vol-visual::after {
+  content: '';
+  position: absolute;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,120,26,.2) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+.vol-icon { font-size: 4rem; position: relative; z-index: 1; margin-bottom: 16px; }
+.vol-visual-txt {
+  position: relative; z-index: 1;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+.vol-visual-cite {
+  font-size: .78rem;
+  color: rgba(255,255,255,.4);
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+/* ─── DOE ────────────────────────────────────────────────────────────────── */
+.doe-section { background: var(--bg-dark); }
+.doe-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.doe-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+.doe-title em { font-style: italic; color: var(--cream); }
+.doe-sub {
+  color: rgba(255,255,255,.55);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.impactos { display: flex; flex-direction: column; gap: 14px; }
+.impacto-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: rgba(255,255,255,.05);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--primary);
+}
+.impacto-val { font-weight: 800; font-size: 1.2rem; color: var(--cream); min-width: 52px; font-family: var(--font-display); }
+.impacto-desc { font-size: .88rem; color: rgba(255,255,255,.6); }
+.pix-card {
+  background: rgba(255,255,255,.06);
+  border: 1.5px solid rgba(242,201,138,.2);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  text-align: center;
+}
+.pix-label {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--primary-lt);
+  margin-bottom: 20px;
+}
+.pix-qr {
+  width: 160px; height: 160px;
+  background: var(--white);
+  border-radius: 12px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  font-size: .78rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.pix-qr-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  width: 100%; height: 100%;
+  position: absolute;
+  inset: 8px;
+  opacity: .7;
+}
+.pix-qr-cell { background: var(--text); border-radius: 1px; }
+.pix-key-box {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.pix-key { font-family: monospace; font-size: .88rem; color: var(--white); opacity: .8; }
+.copy-btn {
+  padding: 6px 14px;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: .78rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all .18s;
+  font-family: var(--font-body);
+}
+.copy-btn:hover { background: var(--primary-dk); }
+.copy-btn.copied { background: var(--green); }
+.pix-tipos {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+.pix-tipo {
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.55);
+}
+
+/* ─── COMUNIDADE CTA ─────────────────────────────────────────────────────── */
+.comunidade-cta {
+  background: var(--cream-lt);
+  padding: 80px 24px;
+  text-align: center;
+}
+.comunidade-cta .section-title { max-width: 560px; margin: 0 auto 16px; }
+.comunidade-cta .section-sub { margin: 0 auto 36px; text-align: center; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ─── FOOTER ─────────────────────────────────────────────────────────────── */
+footer {
+  background: var(--bg-dark);
+  color: rgba(255,255,255,.5);
+  padding: 64px 24px 32px;
+}
+.footer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand p {
+  font-size: .88rem;
+  line-height: 1.7;
+  margin-top: 14px;
+  max-width: 280px;
+}
+.footer-col h4 {
+  color: var(--cream);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: block;
+  font-size: .88rem;
+  padding: 4px 0;
+  transition: color .18s;
+}
+.footer-col a:hover { color: var(--cream); }
+.footer-colors {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+}
+.fc-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.footer-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,.07);
+  margin-bottom: 24px;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .8rem;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.footer-verse {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: rgba(255,255,255,.3);
+  font-size: .82rem;
+}
+
+/* ─── MOBILE MENU ────────────────────────────────────────────────────────── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,21,16,.97);
+  z-index: 950;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--cream);
+  padding: 12px 24px;
+  opacity: .8;
+  transition: opacity .18s;
+}
+.mobile-menu a:hover { opacity: 1; }
+.mobile-menu .close-btn {
+  position: absolute;
+  top: 24px; right: 24px;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .sobre-grid,
+  .vol-grid,
+  .doe-grid { grid-template-columns: 1fr; gap: 40px; }
+  .numeros-grid { grid-template-columns: repeat(2, 1fr); }
+  .eventos-grid,
+  .dep-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .sobre-badge { bottom: -16px; right: 16px; }
+}
+@media (max-width: 640px) {
+  .section { padding: 64px 0; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .eventos-grid,
+  .dep-grid { grid-template-columns: 1fr; }
+  .numeros-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero h1 { font-size: 2.2rem; }
+  .ring-1 { width: 400px; height: 400px; right: -200px; }
+  .ring-2 { width: 300px; height: 300px; right: -150px; }
+  .ring-3 { display: none; }
+}
+
+/* ─── FADE IN ON SCROLL ──────────────────────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- AVISO ATIVO -->
+<div class="aviso-bar">
+  🚨 <strong>Arrecadação em andamento!</strong>
+  <span>Precisamos de alimentos não-perecíveis para o próximo evento.</span>
+  <a href="#doe">Saiba como ajudar →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-circle">✝</div>
+      <div class="logo-text">
+        João 10
+        <small>Jesus o Bom Pastor</small>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#comunidade">Comunidade</a>
+      <a href="#voluntarios">Voluntários</a>
+      <a href="#doe">Doe</a>
+    </div>
+    <a href="#voluntarios" class="nav-cta btn btn-primary" style="padding:10px 22px;font-size:.85rem;">
+      Quero Servir
+    </a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="#sobre" onclick="toggleMenu()">Sobre</a>
+  <a href="#eventos" onclick="toggleMenu()">Eventos</a>
+  <a href="#comunidade" onclick="toggleMenu()">Comunidade</a>
+  <a href="#voluntarios" onclick="toggleMenu()">Voluntários</a>
+  <a href="#doe" onclick="toggleMenu()">Doe</a>
+  <a href="#voluntarios" onclick="toggleMenu()" style="margin-top:16px;color:var(--cream);background:var(--primary);padding:12px 32px;border-radius:100px;">Quero Servir</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-deco-ring ring-1"></div>
+  <div class="hero-deco-ring ring-2"></div>
+  <div class="hero-deco-ring ring-3"></div>
+  <div class="hero-deco-ring ring-4"></div>
+  <div class="dot dot-1"></div>
+  <div class="dot dot-2"></div>
+  <div class="dot dot-3"></div>
+  <div class="dot dot-4"></div>
+  <div class="dot dot-5"></div>
+
+  <div class="hero-content container">
+    <div class="hero-eyebrow">João 10 — Jesus o Bom Pastor</div>
+    <h1>Servindo com amor.<br><em>Transformando vidas.</em></h1>
+    <p class="hero-sub">
+      Uma ONG movida pelo propósito do Bom Pastor — levar cuidado, dignidade e esperança às comunidades por meio de voluntários, doações e serviço.
+    </p>
+    <div class="hero-btns">
+      <a href="#voluntarios" class="btn btn-primary">🤝 Quero Ser Voluntário</a>
+      <a href="#doe" class="btn btn-outline">💛 Quero Doar</a>
+    </div>
+  </div>
+</section>
+
+<!-- VERSO -->
+<div class="verse-strip">
+  <blockquote>"Eu vim para que tenham vida e a tenham em abundância."</blockquote>
+  <cite>João 10:10</cite>
+</div>
+
+<!-- SOBRE -->
+<section class="section" id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="fade-in">
+        <div class="tag">Nossa história</div>
+        <h2 class="section-title">Nascemos do chamado<br>de servir ao próximo</h2>
+        <p class="section-sub" style="margin-bottom:20px;">
+          O Projeto João 10 surgiu do desejo de colocar em prática os ensinamentos do Bom Pastor — não apenas pregar, mas ir ao encontro das pessoas com ações concretas de amor.
+        </p>
+        <p style="color:var(--text-mid);font-size:.95rem;line-height:1.75;max-width:520px;margin-bottom:28px;">
+          Atuamos em comunidades em situação de vulnerabilidade, levando corte de cabelo, música, alimentação, cuidado de saúde e muito mais — com a mão de obra de voluntários que também são transformados enquanto servem.
+        </p>
+        <div class="sobre-valores">
+          <span class="valor-chip chip-red">Amor ao próximo</span>
+          <span class="valor-chip chip-blue">Fé em ação</span>
+          <span class="valor-chip chip-green">Comunidade</span>
+          <span class="valor-chip chip-yellow">Esperança</span>
+          <span class="valor-chip chip-orange">Gratuidade</span>
+        </div>
+      </div>
+      <div class="sobre-visual fade-in">
+        <div class="sobre-img-frame">
+          <div class="sobre-img-placeholder">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            <div>Fotos dos eventos<br>aparecerão aqui</div>
+          </div>
+        </div>
+        <div class="sobre-badge">
+          <strong>2019</strong>
+          <span>Ano de fundação</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section class="numeros-section" id="alcance">
+  <div class="numeros-grid">
+    <div class="numero-card nc-1 fade-in">
+      <div class="numero-val" data-target="1240">0</div>
+      <div class="numero-label">pessoas atendidas</div>
+    </div>
+    <div class="numero-card nc-2 fade-in">
+      <div class="numero-val" data-target="38">0</div>
+      <div class="numero-label">eventos realizados</div>
+    </div>
+    <div class="numero-card nc-3 fade-in">
+      <div class="numero-val" data-target="180">0</div>
+      <div class="numero-label">voluntários no rebanho</div>
+    </div>
+    <div class="numero-card nc-4 fade-in">
+      <div class="numero-val" data-target="12">0</div>
+      <div class="numero-label">cidades alcançadas</div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTOS -->
+<section class="section" id="eventos">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <div class="fade-in">
+        <div class="tag">Galeria</div>
+        <h2 class="section-title">Momentos que ficam<br>para sempre no coração</h2>
+      </div>
+      <a href="#" class="btn btn-outline-dk fade-in" style="margin-bottom:8px;">Ver todos os eventos →</a>
+    </div>
+    <div class="eventos-grid">
+      <div class="evento-card ec-1 fade-in">
+        <div class="evento-foto">
+          <div class="evento-foto-icon">✂️</div>
+          <span class="evento-tipo">Corte & Beleza</span>
+        </div>
+        <div class="evento-body">
+          <div class="evento-data">📅 15 de Março, 2025</div>
+          <div class="evento-titulo">Dia de Beleza para a Comunidade</div>
+          <div class="evento-local">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Vila Nova — Londrina, PR
+          </div>
+        </div>
+      </div>
+      <div class="evento-card ec-2 fade-in">
+        <div class="evento-foto">
+          <div class="evento-foto-icon">🍱</div>
+          <span class="evento-tipo">Alimentação</span>
+        </div>
+        <div class="evento-body">
+          <div class="evento-data">📅 8 de Fevereiro, 2025</div>
+          <div class="evento-titulo">Distribuição de Marmitas e Alimentos</div>
+          <div class="evento-local">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Centro Comunitário — Cambé, PR
+          </div>
+        </div>
+      </div>
+      <div class="evento-card ec-3 fade-in">
+        <div class="evento-foto">
+          <div class="evento-foto-icon">🎵</div>
+          <span class="evento-tipo">Cultura & Música</span>
+        </div>
+        <div class="evento-body">
+          <div class="evento-data">📅 22 de Janeiro, 2025</div>
+          <div class="evento-titulo">Festival de Música e Louvor na Praça</div>
+          <div class="evento-local">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Praça Central — Apucarana, PR
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section dep-section" id="comunidade">
+  <div class="container">
+    <div class="fade-in" style="text-align:center;max-width:520px;margin:0 auto 0;">
+      <div class="tag">Comunidade</div>
+      <h2 class="section-title">O que Deus fez enquanto<br>a gente servia</h2>
+      <p class="section-sub" style="margin:0 auto 48px;text-align:center;">Histórias reais de voluntários e pessoas atendidas que foram tocadas pelo projeto.</p>
+    </div>
+    <div class="dep-grid">
+      <div class="dep-card d1 fade-in">
+        <div class="dep-quote">"</div>
+        <p class="dep-texto">Fui como voluntária para dar corte de cabelo e saí com o coração cheio. Cada pessoa que sentou na minha cadeira me contou uma história que eu nunca vou esquecer. Deus me curou enquanto eu servia.</p>
+        <div class="dep-autor">
+          <div class="dep-avatar av1">M</div>
+          <div>
+            <div class="dep-nome">Mariana Costa</div>
+            <div class="dep-role">Voluntária — Cabeleireira</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card d2 fade-in">
+        <div class="dep-quote">"</div>
+        <p class="dep-texto">Eu não esperava nada. Cheguei na fila com vergonha e saí com a cabeça erguida. Cortaram meu cabelo, me deram comida e oraram por mim. Esse dia mudou minha semana inteira.</p>
+        <div class="dep-autor">
+          <div class="dep-avatar av2">R</div>
+          <div>
+            <div class="dep-nome">Roberto Alves</div>
+            <div class="dep-role">Morador da comunidade</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card d3 fade-in">
+        <div class="dep-quote">"</div>
+        <p class="dep-texto">Nossa empresa começou a apoiar o João 10 achando que era só doação de material. Mas vimos o que acontece nesses eventos e hoje somos parceiros de coração. Isso é real.</p>
+        <div class="dep-autor">
+          <div class="dep-avatar av3">A</div>
+          <div>
+            <div class="dep-nome">Ana Ferreira</div>
+            <div class="dep-role">Parceira — Empresa local</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="#" class="btn btn-outline-dk">Compartilhar minha história ✨</a>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUNTÁRIOS -->
+<section class="section vol-section" id="voluntarios">
+  <div class="container">
+    <div class="vol-grid">
+      <div class="fade-in">
+        <div class="tag">Voluntários</div>
+        <h2 class="section-title">Você tem algo para<br>oferecer. Venha servir.</h2>
+        <p class="section-sub" style="margin-bottom:4px;">
+          Precisamos de pessoas com todo tipo de habilidade — e também de quem só quer estar presente e ajudar com o que tiver.
+        </p>
+        <div class="habilidades-grid">
+          <span class="habilidade-tag"><span class="dot-sm" style="background:var(--red)"></span>Cabeleireiro(a)</span>
+          <span class="habilidade-tag"><span class="dot-sm" style="background:var(--blue)"></span>Barbeiro(a)</span>
+          <span class="habilidade-tag"><span class="dot-sm" style="background:var(--green)"></span>Música</span>
+          <span class="habilidade-tag"><span class="dot-sm" style="background:var(--yellow)"></span>Dança</span>
+          <span class="habilidade-tag"><span class="dot-sm" style="background:var(--orange)"></span>Pintura de Rosto</span>
+          <span class="habilidade-tag"><span class="dot-sm" style="background:var(--red)"></span>Fotografia</span>
+          <span class="habilidade-tag"><span class="dot-sm" style="background:var(--blue)"></span>Culinária</span>
+          <span class="habilidade-tag"><span class="dot-sm" style="background:var(--green)"></span>Saúde</span>
+          <span class="habilidade-tag"><span class="dot-sm" style="background:var(--primary)"></span>Recreação Infantil</span>
+          <span class="habilidade-tag"><span class="dot-sm" style="background:var(--text-lt)"></span>+ muito mais</span>
+        </div>
+        <a href="#" class="btn btn-primary" style="font-size:1rem;padding:16px 32px;">
+          🙋 Quero me cadastrar como voluntário
+        </a>
+      </div>
+      <div class="vol-visual fade-in">
+        <div class="vol-icon">🫶</div>
+        <p class="vol-visual-txt">"O bom pastor dá a sua vida pelas ovelhas."</p>
+        <div class="vol-visual-cite">João 10:11</div>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:28px;flex-wrap:wrap;">
+          <div style="background:rgba(255,255,255,.07);padding:10px 16px;border-radius:10px;text-align:center;min-width:90px;">
+            <div style="font-weight:800;font-size:1.3rem;color:var(--cream);font-family:var(--font-display);">180+</div>
+            <div style="font-size:.72rem;color:rgba(255,255,255,.4);font-weight:600;">voluntários</div>
+          </div>
+          <div style="background:rgba(255,255,255,.07);padding:10px 16px;border-radius:10px;text-align:center;min-width:90px;">
+            <div style="font-weight:800;font-size:1.3rem;color:var(--cream);font-family:var(--font-display);">12+</div>
+            <div style="font-size:.72rem;color:rgba(255,255,255,.4);font-weight:600;">habilidades</div>
+          </div>
+          <div style="background:rgba(255,255,255,.07);padding:10px 16px;border-radius:10px;text-align:center;min-width:90px;">
+            <div style="font-weight:800;font-size:1.3rem;color:var(--cream);font-family:var(--font-display);">6</div>
+            <div style="font-size:.72rem;color:rgba(255,255,255,.4);font-weight:600;">anos servindo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOE -->
+<section class="section doe-section" id="doe">
+  <div class="container">
+    <div class="doe-grid">
+      <div class="fade-in">
+        <div class="tag" style="color:var(--cream);background:rgba(242,201,138,.12);border-color:rgba(242,201,138,.25);">Doações</div>
+        <h2 class="doe-title">Sua doação vira<br><em>vida em abundância</em><br>para alguém.</h2>
+        <p class="doe-sub">
+          Cada contribuição — seja em dinheiro, alimentos ou habilidade — ajuda a manter os eventos acontecendo e as comunidades sendo alcançadas.
+        </p>
+        <div class="impactos">
+          <div class="impacto-item">
+            <span class="impacto-val">R$20</span>
+            <span class="impacto-desc">Alimenta uma família inteira durante um evento</span>
+          </div>
+          <div class="impacto-item">
+            <span class="impacto-val">R$50</span>
+            <span class="impacto-desc">Cobre o material de 5 cortes de cabelo</span>
+          </div>
+          <div class="impacto-item">
+            <span class="impacto-val">R$100</span>
+            <span class="impacto-desc">Ajuda a custear transporte e logística de um evento</span>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="pix-card">
+          <div class="pix-label">⚡ Doe via Pix — rápido e seguro</div>
+          <div class="pix-qr" title="QR Code do Pix">
+            <!-- QR Code decorativo (substituir por imagem real) -->
+            <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:3px;width:120px;height:120px;">
+              <script>
+                for(let i=0;i<81;i++){
+                  const r=Math.random()>.42;
+                  document.write(`<div style="background:${r?'#1A1510':'transparent'};border-radius:1px;width:100%;height:100%;aspect-ratio:1"></div>`);
+                }
+              </script>
+            </div>
+          </div>
+          <p style="font-size:.75rem;color:rgba(255,255,255,.35);margin-bottom:14px;">Aponte a câmera ou copie a chave</p>
+          <div class="pix-key-box">
+            <span class="pix-key" id="pixKey">joao10@projetojoao10.org.br</span>
+            <button class="copy-btn" id="copyBtn" onclick="copyPix()">Copiar</button>
+          </div>
+          <div class="pix-tipos">
+            <span class="pix-tipo">💵 Dinheiro</span>
+            <span class="pix-tipo">🛒 Alimentos</span>
+            <span class="pix-tipo">👕 Roupas</span>
+            <span class="pix-tipo">🎁 Materiais</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNIDADE CTA -->
+<div class="comunidade-cta">
+  <div class="tag">Faça parte</div>
+  <h2 class="section-title">Seja parte desta história.</h2>
+  <p class="section-sub">
+    Voluntário, parceiro ou doador — há um lugar no rebanho para você. Venha descobrir como Deus pode agir em você enquanto você serve.
+  </p>
+  <div class="cta-btns">
+    <a href="#voluntarios" class="btn btn-primary" style="padding:16px 32px;font-size:1rem;">🙋 Quero Ser Voluntário</a>
+    <a href="#" class="btn btn-outline-dk" style="padding:16px 32px;font-size:1rem;">🤝 Quero Ser Parceiro</a>
+    <a href="#doe" class="btn btn-outline-dk" style="padding:16px 32px;font-size:1rem;">💛 Quero Doar</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-circle">✝</div>
+          <div class="logo-text" style="color:var(--cream);">
+            João 10
+            <small style="color:rgba(255,255,255,.4);">Jesus o Bom Pastor</small>
+          </div>
+        </div>
+        <p>Uma ONG movida pela fé e pelo serviço às comunidades. Transformando vidas por meio do amor concreto ao próximo.</p>
+        <div class="footer-colors">
+          <div class="fc-dot" style="background:var(--red)"></div>
+          <div class="fc-dot" style="background:var(--blue)"></div>
+          <div class="fc-dot" style="background:var(--green)"></div>
+          <div class="fc-dot" style="background:var(--yellow)"></div>
+          <div class="fc-dot" style="background:var(--orange)"></div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="#sobre">Sobre o Projeto</a>
+        <a href="#eventos">Galeria de Eventos</a>
+        <a href="#comunidade">Comunidade</a>
+        <a href="#alcance">Alcance</a>
+      </div>
+      <div class="footer-col">
+        <h4>Participar</h4>
+        <a href="#voluntarios">Ser Voluntário</a>
+        <a href="#">Ser Parceiro</a>
+        <a href="#doe">Fazer Doação</a>
+        <a href="#">Enviar Depoimento</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="#">📱 WhatsApp</a>
+        <a href="#">📸 Instagram</a>
+        <a href="#">📘 Facebook</a>
+        <a href="#">✉️ E-mail</a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>© 2025 Projeto João 10 — Todos os direitos reservados.</span>
+      <span class="footer-verse">"Eu sou o bom pastor." — Jo 10:11</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* MOBILE MENU */
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+}
+
+/* COPY PIX */
+function copyPix() {
+  const key = document.getElementById('pixKey').textContent;
+  const btn = document.getElementById('copyBtn');
+  navigator.clipboard.writeText(key).then(() => {
+    btn.textContent = '✅ Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copiar';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+
+/* COUNT UP ANIMATION */
+function animateCounters() {
+  document.querySelectorAll('[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const duration = 1800;
+    const start = performance.now();
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target).toLocaleString('pt-BR');
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = target.toLocaleString('pt-BR') + (target > 100 ? '+' : '');
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+/* INTERSECTION OBSERVER — fade in + counter trigger */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+let countersDone = false;
+const counterObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting && !countersDone) {
+    countersDone = true;
+    animateCounters();
+  }
+}, { threshold: 0.3 });
+
+const numSection = document.querySelector('.numeros-section');
+if (numSection) counterObserver.observe(numSection);
+</script>
+</body>
+</html>
